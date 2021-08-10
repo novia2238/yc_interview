@@ -18,7 +18,7 @@ namespace yc_interview.Service.Customer
 
         public List<CustomerViewModel> GetList() 
         {
-            var result = _context.Customers.Select(p => 
+            var result = _context.Customers.OrderBy(p=>p.CompanyName).Select(p => 
                 new CustomerViewModel { 
                     CustomerId = p.CustomerId,
                     CompanyName = p.CompanyName,

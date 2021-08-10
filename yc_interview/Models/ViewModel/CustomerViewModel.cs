@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace yc_interview.Models.ViewModel
 {
     public class CustomerViewModel
     {
+        [Required]
+        [StringLength(5)]
         public string CustomerId { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }

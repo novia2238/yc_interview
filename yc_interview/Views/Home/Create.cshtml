@@ -1,26 +1,31 @@
 ﻿@using yc_interview.Models.ViewModel
 @model CustomerViewModel
 <div class="text-center">
-    <div class="row">
-        <form method="post" action="/Home/CreateData">
-            <div class="mb-3 row">
-                <label class="col-form-label">ID</label>
-                <input type="text" class="form-control" name="CustomerId" />
-            </div>
-            <div class="mb-3 row">
-                <label class="col-form-label">公司名稱</label>
-                <input type="text" class="form-control" name="CompanyName" />
-            </div>
-            <div class="mb-3 row">
-                <label class="col-form-label">聯絡人名稱</label>
-                <input type="text" class="form-control" name="ContactName" />
-            </div>
-            <div class="mb-3 row">
-                <label class="col-form-label">電話</label>
-                <input type="text" class="form-control" name="Phone" />
-            </div>
 
-            <button type="submit">新增</button>
-        </form>
+    <div class="row">
+        @using (Html.BeginForm("CreateData" , "Home" , FormMethod.Post))
+        {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="mb-3 row">
+                    <label class="col-form-label">ID</label>
+                    @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CustomerId ,"", new { @class = "text-danger"} )
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-form-label">公司名稱</label>
+                    <input type="text" class="form-control" name="CompanyName" />
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-form-label">聯絡人名稱</label>
+                    <input type="text" class="form-control" name="ContactName" />
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-form-label">電話</label>
+                    <input type="text" class="form-control" name="Phone" />
+                </div>
+
+                <button type="submit">新增</button>
+        }
     </div>
 </div>

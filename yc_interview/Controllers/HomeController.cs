@@ -37,8 +37,11 @@ namespace yc_interview.Controllers
 
         public async Task<IActionResult> CreateData(CustomerViewModel model) 
         {
-            await _service.Create(model);
 
+            if (ModelState.IsValid)
+            {
+                await _service.Create(model);
+            }
             return RedirectToAction("Index");
         }
 
