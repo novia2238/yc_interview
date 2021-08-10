@@ -42,9 +42,17 @@ namespace yc_interview.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Edit(string ID) 
         {
-            return View();
+            var data = _service.Get(ID);
+            return View(data);
+        }
+
+        public async Task<IActionResult> EditData(CustomerViewModel model) 
+        {
+            await _service.Edit(model);
+
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

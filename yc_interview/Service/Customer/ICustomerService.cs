@@ -10,7 +10,10 @@ namespace yc_interview.Service.Customer
     public interface ICustomerService
     {
         List<CustomerViewModel> GetList();
+
+        CustomerViewModel Get(string ID);
         Task<ReturnResult> Create(CustomerViewModel model);
-       
+
+        Task<ReturnResult> Edit(CustomerViewModel model);
     }
 }

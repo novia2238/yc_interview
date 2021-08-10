@@ -1,0 +1,27 @@
+﻿@using yc_interview.Models.ViewModel
+@model CustomerViewModel
+<div class="text-center">
+    <div class="row">
+        <form method="post" action="/Home/EditData">
+            <div class="mb-3 row">
+                <label class="col-form-label">ID</label>
+                <input type="text" class="form-control" name="CustomerId" value="@Model.CustomerId" readonly placeholder="@Model.CustomerId"/>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-form-label">公司名稱</label>
+                <input type="text" class="form-control" name="CompanyName" value="@Model.CompanyName" placeholder="@Model.CompanyName" />
+            </div>
+            <div class="mb-3 row">
+                <label class="col-form-label">聯絡人名稱</label>
+                <input type="text" class="form-control" name="ContactName" value="@Model.ContactName" placeholder="@Model.ContactName"/>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-form-label">電話</label>
+                <input type="text" class="form-control" name="Phone" value="@Model.Phone" placeholder="@Model.Phone"/>
+            </div>
+
+            <button type="submit">修改</button>
+            <a href="@Url.Action("Index")">取消</a>
+        </form>
+    </div>
+</div>

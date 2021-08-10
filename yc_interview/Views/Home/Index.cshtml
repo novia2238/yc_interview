@@ -21,6 +21,7 @@
                 <td>@item.CompanyName</td>
                 <td>@item.ContactName</td>
                 <td>@item.Phone</td>
+                <td><a href="@Url.Action("Edit" , new { ID = item.CustomerId})">修改</a></td>
             </tr>
         }
     </table>

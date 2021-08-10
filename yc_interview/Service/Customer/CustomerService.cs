@@ -29,6 +29,19 @@ namespace yc_interview.Service.Customer
             return result;
         }
 
+        public CustomerViewModel Get(string ID) 
+        {
+            var result = _context.Customers.Where(p => p.CustomerId == ID)
+                .Select(p=> new CustomerViewModel {
+                    CustomerId = p.CustomerId,
+                    CompanyName = p.CompanyName,
+                    ContactName = p.ContactName,
+                    Phone = p.Phone
+                }).FirstOrDefault();
+
+            return result;
+        }
+
         public async Task<ReturnResult> Create(CustomerViewModel model) 
         {
             try
@@ -46,6 +59,29 @@ namespace yc_interview.Service.Customer
                 return new ReturnResult { result = "success" };
             }
             catch (Exception ex) 
+            {
+                return new ReturnResult { result = "error", msg = ex.Message };
+            }
+        }
+
+        public async Task<ReturnResult> Edit(CustomerViewModel model) 
+        {
+            try
+            {
+                var data = _context.Customers.Where(p => p.CustomerId == model.CustomerId).FirstOrDefault();
+
+                if (data != null)
+                {
+                    data.CompanyName = model.CompanyName;
+                    data.ContactName = model.ContactName;
+                    data.Phone = model.Phone;
+
+                    await _context.SaveChangesAsync();
+                    return new ReturnResult { result = "success" };
+                }
+                throw new Exception("Customer ID doesn't exsit");
+            }
+            catch (Exception ex)
             {
                 return new ReturnResult { result = "error", msg = ex.Message };
             }
