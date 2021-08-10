@@ -7,24 +7,38 @@ using System.Linq;
 using System.Threading.Tasks;
 using yc_interview.Models;
 using yc_interview.Models.DB;
+using yc_interview.Models.ViewModel;
+using yc_interview.Service.Customer;
 
 namespace yc_interview.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly NorthwindContext _context;
+        private readonly ICustomerService _service;
 
-        public HomeController(ILogger<HomeController> logger , NorthwindContext context)
+        public HomeController(ILogger<HomeController> logger , ICustomerService service)
         {
             _logger = logger;
-            _context = context;
+            _service = service;
 
         }
 
         public IActionResult Index()
         {
+            var result = _service.GetList();
+            return View(result);
+        }
+
+        public IActionResult Create() 
+        {
             return View();
+        }
+
+        public IActionResult CreateData(CustomerViewModel model) 
+        {
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using yc_interview.Models.DB;
+using yc_interview.Service.Customer;
 
 namespace yc_interview
 {
@@ -26,7 +27,7 @@ namespace yc_interview
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddScoped<ICustomerService, CustomerService>();
             services.AddDbContext<NorthwindContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DBContext")));
         }
