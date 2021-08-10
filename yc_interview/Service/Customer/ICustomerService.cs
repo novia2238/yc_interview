@@ -15,5 +15,7 @@ namespace yc_interview.Service.Customer
         Task<ReturnResult> Create(CustomerViewModel model);
 
         Task<ReturnResult> Edit(CustomerViewModel model);
+
+        Task<ReturnResult> Delete(string ID);
     }
 }

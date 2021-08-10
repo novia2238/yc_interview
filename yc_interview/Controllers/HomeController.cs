@@ -55,6 +55,13 @@ namespace yc_interview.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> DeleteData(string ID) 
+        {
+            await _service.Delete(ID);
+
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

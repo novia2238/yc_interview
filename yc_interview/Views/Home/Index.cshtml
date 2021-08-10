@@ -22,7 +22,9 @@
                 <td>@item.ContactName</td>
                 <td>@item.Phone</td>
                 <td><a href="@Url.Action("Edit" , new { ID = item.CustomerId})">修改</a></td>
+                <td><a href="@Url.Action("DeleteData" , new { ID = item.CustomerId})" onclick="return confirm('確定?')">刪除</a></td>
             </tr>
         }
     </table>
 </div>
+

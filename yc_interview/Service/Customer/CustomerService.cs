@@ -86,5 +86,23 @@ namespace yc_interview.Service.Customer
                 return new ReturnResult { result = "error", msg = ex.Message };
             }
         }
+
+        public async Task<ReturnResult> Delete(string ID) 
+        {
+            try {
+                var data = _context.Customers.Where(p => p.CustomerId == ID).FirstOrDefault();
+                if (data != null)
+                {
+                    _context.Customers.Remove(data);
+                    await _context.SaveChangesAsync();
+                    return new ReturnResult { result = "success" };
+                }
+                throw new Exception("Customer ID doesn't exsit");
+            }
+            catch (Exception ex)
+            {
+                return new ReturnResult { result = "error", msg = ex.Message };
+            }
+        }
     }
 }
