@@ -35,8 +35,9 @@ namespace yc_interview.Controllers
             return View();
         }
 
-        public IActionResult CreateData(CustomerViewModel model) 
+        public async Task<IActionResult> CreateData(CustomerViewModel model) 
         {
+            await _service.Create(model);
 
             return RedirectToAction("Index");
         }
